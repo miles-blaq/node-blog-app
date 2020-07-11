@@ -1,0 +1,20 @@
+<% include partials/header %>
+
+<div class="ui text container customForm">
+<form class="ui form" action="/blogs/<%= blogsH._id%>?_method=PUT" method="POST">
+    <div class="field">
+        <label>Title</label>
+        <input type="text" name="blogInfo[title]" value="<%= blogsH.title %>">
+    </div>
+    <div class="field">
+        <label>image</label>
+        <input type="text" name="blogInfo[image]" value="<%= blogsH.image %>"> 
+    </div>
+    <div class="required field">
+        <label> Text</label>
+        <textarea name="blogInfo[description]" id="" cols="30" rows="10" required><%= blogsH.description %></textarea>
+    </div>
+    <button class="ui positive basic button">submit</button>
+</form>
+</div>
+<% include partials/footer %>

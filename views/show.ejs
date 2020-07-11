@@ -1,0 +1,91 @@
+<% include partials/header %>
+
+<div class="ui container segment body">
+    <p>
+        <%= blogsH.title%>
+    </p>
+    <img src="<%= blogsH.image %>" alt="">
+
+    <p><em>posted by: <%= blogsH.author.username %></em></p>
+    <p><em><%= blogsH.dayCreated.toDateString() %> </em></p>
+    <div>
+        <%= blogsH.description %>
+    </div>
+
+  <%if(currentUser && blogsH.author.id.equals(currentUser.id)){ %>
+    <a class="ui primary basic button" href="/blogs/<%= blogsH._id%>/edit">Edit</a>
+    <!-- delete form -->
+    <form  class="delete-form" action="/blogs/<%= blogsH._id %>?_method=delete" method="POST">
+        <button class="ui negative basic button">Delete</button>
+    </form>
+  <%} %>
+
+</div>
+
+<!-- comments -->
+<div class="ui container segment">
+    <div class="ui comments">
+        <div class="ui dividing header">
+            <!-- class added to make it an inline element using custom css -->
+            <h3 class="comments-showPage">comments </h3>
+            <a href="/blogs/<%= blogsH._id %>/comments/new"><i class="comment icon"></i></a>
+        </div>
+        <% blogsH.comments.forEach(function(i){ %>
+        <div class="comment">
+            <div class="avatar">
+                <a href="#"><i class="user circle icon"></i></a>
+            </div>
+            <div class="content">
+                <a href="#"><strong> <%= i.author.username %> </strong></a>
+                <div class="meta">
+                    <span class="date"></span>
+                </div>
+                <!-- edit and delete -->
+              <% if(currentUser && i.author.id.equals(currentUser.id)){ %>
+                <div id="edit-bar">
+                    <div class="ui dropdown item">
+                        <i class="ui right floated bars icon"></i>
+                        <div class="menu">
+                            <div class="ui link items">
+                                <div class="item">
+                                    <a href="/blogs/<%= blogsH._id %>/comments/<%= i._id%>/edit">
+                                        Edit
+                                    </a>
+                                </div>
+                                <div class="item">
+                                    <form class="delete-form"
+                                        action="/blogs/<%= blogsH._id %>/comments/<%= i._id %>?_method=DELETE"
+                                        method="POST">
+                                        <button id="comment-delete">Delete</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <% } %>
+                <!-- edit and delete comment end -->
+                <div class="text">
+                    <p><%= i.text %></p>
+                </div>
+                <div class="actions">
+                    <a href="#">reply</a>
+                </div>
+
+
+            </div>
+
+        </div>
+        <% }) %>
+    </div>
+    <div>
+        <a class="ui primary basic button" href="/blogs/<%= blogsH._id %>/comments/new">comment</a>
+    </div>
+</div>
+
+
+
+
+
+
+<% include partials/footer %>

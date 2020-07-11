@@ -1,0 +1,56 @@
+/* all main containers */
+.container.body{
+    margin-top:60px;
+    margin-bottom: 40px;
+}
+/* //add new blog */
+.container.customForm{
+    margin: 100px;
+}
+.comments-showPage{
+    display: inline;
+}
+.comment.icon{
+    text-align: right;
+    float: right;
+    font-size:2em;
+    position: relative;
+    bottom: 16px;
+}
+.ui.comments{
+   max-width: 100%;
+}
+/* styling login form page */
+.placeholder.segment{
+    width: 60%;
+    margin: 200px auto;
+}
+.message.customFlash{
+    position: fixed;
+    top: 60px;
+    left: 1%;
+    right: 1%;
+    z-index: 7000;
+    border: 1px solid grey;
+    opacity: 0.6;
+    width: 80%;
+    margin: 0 auto;
+}
+/* float edit bar to right */
+#edit-bar{
+   float: right;
+}
+#edit-bar a{
+    color: black;
+}
+/* make form inline */
+.delete-form{
+    display: inline-block;
+}
+#comment-delete{
+  border: none;
+}
+.link.items{
+   margin:10px;
+}
+

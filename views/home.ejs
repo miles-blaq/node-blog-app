@@ -1,0 +1,29 @@
+<% include partials/header %>
+
+
+<div class="ui container body">
+        <div class="ui top attached segment">
+            <div class="ui divided items">
+                <% blogsH.forEach(function(i){ %>
+                <div class="item">
+                    <div class="image">
+                        <img src="<%= i.image %> " alt="">
+                    </div>
+                    <div class="content">
+                        <a class="header" href="/blogs/<%=i._id%>"><%= i.title %></a>
+                        
+                        <div class="description">
+                            <p> <%- i.description.substring(0,200) %>...</p>
+                        </div>
+                        <div class="extra">
+                            <!-- show link-->
+                            <a class="ui floated blue basic button " href="/blogs/<%=i._id%>">Read more</a>
+                        </div>
+                    </div>
+                </div>
+                <% }); %>
+            </div>
+        </div>
+    </div>
+
+<% include partials/footer %>

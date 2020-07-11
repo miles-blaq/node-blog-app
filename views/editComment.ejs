@@ -1,0 +1,29 @@
+
+<% include partials/header %>
+
+<div class="ui text container customForm">
+    <h1>add comment</h1>
+    <form class="ui form" action="/blogs/<%= blogsH._id %>/comments/<%= commentsH._id%>?_method=PUT" method="POST">
+        <div class="field">
+            <label> comment</label>
+            <textarea name="commentInfo[text]" id="" cols="30" rows="2"><%= commentsH.text %></textarea>
+        </div>
+        <!-- <div class="field">
+            <label>author</label>
+            <input type="text" name="commentInfo[author]" value="<%= commentsH.author %>">
+        </div> -->
+        <button class="ui fluid positive basic button">submit</button>
+
+    </form>
+</div>
+
+
+
+
+
+
+
+
+
+
+<% include partials/footer %>

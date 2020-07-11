@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title> blog</title>
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+    <link rel="stylesheet" href="/stylesheets/main.css">
+
+<body>
+    <div class="ui fixed secondary large menu">
+        <a class="header active item" href="/">
+            Home
+        </a>
+        <a class="item" href="/blogs/new">
+            add post
+        </a>
+        <a class="item">
+        </a>
+        <div class="right menu">
+            <div class="item">
+                <div class="ui icon input">
+                    <input type="text" placeholder="Search...">
+                    <i class="search link icon"></i>
+                </div>
+            </div>
+            <!-- show username if logged in -->
+            <% if(currentUser){ %>
+            <a href="#" class="ui item">
+                <span> <strong>signed in as:</strong> <%= currentUser.username %></span>
+            </a>
+            <% } %>
+            <!--  -->
+            <!-- show login,if user is not logged in -->
+            <% if(!currentUser){ %>
+            <a class="ui item" href="/login">
+                Login
+            </a>
+            <% } %>
+            <!-- e -->
+            <!-- show login only if user is logged in -->
+            <% if(currentUser){ %>
+            <a class="ui item" href="/logout">
+                Logout
+            </a>
+            <% } %>
+        </div>
+    </div>
+    <!-- flash message setups -->
+    <div class="ui container">
+        <% if(error && error.length > 0){ %>
+        <div class="ui negative message customFlash">
+            <i id="errMsg" class="close icon"></i>
+            <h3 class="header"><%= error %></h3>
+        </div>
+        <% } %>
+        <% if(success && success.length > 0){ %>
+        <div id="success" class="ui positive message customFlash">
+            <h3 class="header"><%= success %></h3>
+        </div>
+        <% } %>
+    </div>
