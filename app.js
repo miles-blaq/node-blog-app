@@ -1,4 +1,5 @@
-var express        = require("express"),
+require('dotenv').config()
+const express        = require("express"),
     bodyParser     = require("body-parser"),
     mongoose       = require("mongoose"),
     blogMod        = require("./models/blogScheme"), //require blog scheme
@@ -12,7 +13,7 @@ var express        = require("express"),
     flash          = require("connect-flash");
 
 
- mongoose.connect("mongodb://localhost:27017/realBlog1",{useNewUrlParser: true})
+ mongoose.connect(process.env.DATABASEURL,{useNewUrlParser: true})
  mongoose.set('useFindAndModify', false);
 
 //require routes ***************************************************************************

@@ -15,7 +15,7 @@ router.get("/blogs",function(req,res){
         }else{
             res.render("home",{blogsH : foundBlogs})
         }
-    })
+    }).sort( {"_id": -1} )
 })    
 
 

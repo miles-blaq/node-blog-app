@@ -1,14 +1,16 @@
 <% include partials/header %>
 
 <div class="ui text container customForm">
-<form class="ui form" action="/blogs/<%= blogsH._id%>?_method=PUT" method="POST">
+<form class="ui form" action="/blogs/<%= blogsH._id%>?_method=PUT" method="POST" enctype="multipart/form-data">
     <div class="field">
         <label>Title</label>
         <input type="text" name="blogInfo[title]" value="<%= blogsH.title %>">
     </div>
     <div class="field">
         <label>image</label>
-        <input type="text" name="blogInfo[image]" value="<%= blogsH.image %>"> 
+        <input type="file" accept="image/*" name="image" multiple />
+        <!-- <img src="<%= blogsH.image.url %>" alt="blog-img" width="70%"> -->
+        <!-- <input type="text" name="blogInfo[image]" value="<%= blogsH.image %>">  -->
     </div>
     <div class="required field">
         <label> Text</label>

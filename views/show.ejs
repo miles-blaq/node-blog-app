@@ -4,7 +4,8 @@
     <p>
         <%= blogsH.title%>
     </p>
-    <img src="<%= blogsH.image %>" alt="">
+
+    <img src="<%= blogsH.image.url %>" alt="blog-img" width="70%">
 
     <p><em>posted by: <%= blogsH.author.username %></em></p>
     <p><em><%= blogsH.dayCreated.toDateString() %> </em></p>
