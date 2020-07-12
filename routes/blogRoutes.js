@@ -13,26 +13,38 @@ router.get("/blogs/new",middleware.isLoggedIn,function(req,res){
 });
 router.post("/blogs",upload.single("image"),middleware.isLoggedIn,function(req,res){
     req.body.blogInfo.image ={}
-    console.log(req.file)
-    cloudinary.uploader.upload(req.file.path,function(error, result){
-        if(error){
-            console.log(error)
-            return res.redirect("back")
-        }
-            req.body.blogInfo.image.url=result.secure_url,
-            req.body.blogInfo.image.public_id=result.public_id
-            
-            blogMod.create(req.body.blogInfo,function(err,newBlog){
-                if(err){
-                    console.log(err)
-                }else{
-                    newBlog.author.id = req.user._id;
-                    newBlog.author.username = req.user.username;
-                    newBlog.save();
-                    res.redirect("/blogs")
-                }
-            })
-    })
+    if(req.file){
+        cloudinary.uploader.upload(req.file.path,function(error, result){
+            if(error){
+                console.log(error)
+                return res.redirect("back")
+            }
+                req.body.blogInfo.image.url=result.secure_url,
+                req.body.blogInfo.image.public_id=result.public_id
+                
+                blogMod.create(req.body.blogInfo,function(err,newBlog){
+                    if(err){
+                        console.log(err)
+                    }else{
+                        newBlog.author.id = req.user._id;
+                        newBlog.author.username = req.user.username;
+                        newBlog.save();
+                        res.redirect("/blogs")
+                    }
+                })
+        })
+    }else{
+        blogMod.create(req.body.blogInfo,function(err,newBlog){
+            if(err){
+                console.log(err)
+            }else{
+                newBlog.author.id = req.user._id;
+                newBlog.author.username = req.user.username;
+                newBlog.save();
+                res.redirect("/blogs")
+            }
+        })
+    }
 })
 //show route ********************************************************
 router.get("/blogs/:id",function(req,res){
