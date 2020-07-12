@@ -13,7 +13,17 @@ const express        = require("express"),
     flash          = require("connect-flash");
 
 
- mongoose.connect(process.env.DATABASEURL,{useNewUrlParser: true})
+//  mongoose.connect(process.env.DATABASEURL,{useNewUrlParser: true})
+
+const MongoClient = require('mongodb').MongoClient;
+const uri = "mongodb+srv://milesblaq:node-blog-app@cluster0.jwucw.gcp.mongodb.net/node-blog?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true });
+client.connect(err => {
+  const collection = client.db("test").collection("devices");
+  // perform actions on the collection object
+  client.close();
+});
+
  mongoose.set('useFindAndModify', false);
 
 //require routes ***************************************************************************
